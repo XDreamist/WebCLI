@@ -8,17 +8,24 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="cursorRectangle"></div>
-    <div id="scanLinesOverlay"></div>
-
-    <div class="main">
-        <div class="content">
-            <h2>WELCOME</h2>
+    <div id="rectCursor"></div>
+    <div id="scanLines"></div>
+    <div id="vignette"></div>
+    
+    <canvas id="bg"></canvas>
+    <div class="main" id="comp">
+        <div class="content-container">
+            <div class="content-box">
+                <h2>WELCOME</h2>
+            </div>
         </div>
-        <div class="status">
-            <h2>ENGINEERING WARP SYSTEM</h2>
+        <div class="status-container">
+            <h1>ENGINEERING</h1>
+            <h2>WARP SYSTEMS CONTROL</h2>
+            <div class="status-box">
+            </div>
         </div>
-    </div>
+    </div><canvas id="c"></canvas>
     <script src="script.js"></script>
 </body>
 </html>
