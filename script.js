@@ -11,6 +11,21 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+document.getElementById("terminal-input").addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+      var command = event.target.value.toLowerCase().trim();
+
+      if (command.startsWith("google ")) {
+        var keyword = command.substring(7);
+        window.location.href = "https://www.google.com/search?q=" + encodeURIComponent(keyword);
+      } else if (command === "youtube") {
+        window.location.href = "https://www.youtube.com";
+      } else {
+        alert("Command not recognized.");
+      }
+      event.target.value = "";
+    }
+  });
 
 /*document.addEventListener('DOMContentLoaded', function () {
     // Get the source div and target canvas elements
