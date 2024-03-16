@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-document.addEventListener('DOMContentLoaded', function () {
+/*document.addEventListener('DOMContentLoaded', function () {
     // Get the source div and target canvas elements
     var sourceDiv = document.getElementById('comp');
     var targetCanvas = document.getElementById('bg');
@@ -196,4 +196,4 @@ function distortion2() {
     }
     
     ctx.putImageData(imgData, 0, 0);
-}
+}*/
