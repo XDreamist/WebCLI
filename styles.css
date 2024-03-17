@@ -57,15 +57,33 @@ body {
 }
 
 #terminal-input{
-    color: #326c20;
-    font-size: 16px;
-    font-weight: 100;
     background: none;
+    color: #326c20;
+    width: 100%;
     border: none;
     text-decoration: none;
     font-family: 'MONO';
     outline: none;
+    font-size: 16px;
+    font-weight: 100;
     z-index: 1;
+    /*caret-color: transparent;*/
+}
+
+#command-response {
+    width: 100%;
+}
+
+#command-symbol {
+    pointer-events: none;
+    user-select: none;
+    padding-right: 10px;
+}
+
+#command-line {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 h1 {
