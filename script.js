@@ -9,6 +9,8 @@ var commandDatabase = {
 
 };
 var terminalQueue = [];
+var audio = new Audio("ref/Retro Text.mp3");
+audio.loop = true;
 
 document.addEventListener("DOMContentLoaded", function () {
     const rectangleCursor = document.getElementById("rectCursor");
@@ -80,6 +82,7 @@ function showResponse(keyword, response_type) {
             break;
         case "open":
             addResponse("< ", "OPENING " + keyword + "....");
+            break;
         case "invalid":
             addResponse("! ", "INVALID COMMAND '" + keyword + "'");
             break;
@@ -101,7 +104,7 @@ function addResponse(symbol, response) {
     terminal.appendChild(line);
 
     var index = 0;
-    //playSoundEffect();
+    audio.play();
     var typingEffect = setInterval(function() {
         command.textContent += response[index];
         index++;
@@ -109,8 +112,9 @@ function addResponse(symbol, response) {
         if (index >= response.length) {
             clearInterval(typingEffect);
             processNext();
+            audio.pause();
         }
-    }, 20);
+    }, 15);
 }
 
 function setSymbol(symbol, parent) {
@@ -122,9 +126,11 @@ function setSymbol(symbol, parent) {
 }
 
 function playSoundEffect() {
-    var audio = new Audio("ref/Warp Drive on a Retro Computer UI_Rk97Y63kpUQ.mp3");
+    var audio = new Audio("ref/Retro Text.mp3");
     audio.play();
 }
+
+
 
 function processNext() {
     if (terminalQueue.length > 0) {
