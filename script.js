@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "youtube": "https://www.youtube.com",
         "discord": "https://discord.com/channels/@me",
         "github": "https://github.com/",
+        "gpt": "https://chat.openai.com/"
 
       };
   
