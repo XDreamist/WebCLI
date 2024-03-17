@@ -11,31 +11,31 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-    var commandDatabase = {
-        "youtube": "https://www.youtube.com",
-        "discord": "https://discord.com/channels/@me",
-        "github": "https://github.com/",
-        "gpt": "https://chat.openai.com/"
+var commandDatabase = {
+    "youtube": "https://www.youtube.com",
+    "discord": "https://discord.com/channels/@me",
+    "github": "https://github.com/",
+    "gpt": "https://chat.openai.com/",
 
-      };
+};
   
-      document.getElementById("terminal-input").addEventListener("keypress", function(event) {
-        if (event.key === "Enter") {
-          var command = event.target.value.toLowerCase().trim();
+document.getElementById("terminal-input").addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+        var command = event.target.value.toLowerCase().trim();
           
-          if (command.startsWith("google ")) {
+        if (command.startsWith("google ")) {
             var keyword = command.substring(7);
-            
-            window.location.href = "https://www.google.com/search?q=" + encodeURIComponent(keyword);
-          } else {
+                
+            window.open("https://www.google.com/search?q=" + encodeURIComponent(keyword), "_blank");
+        } else {
             if (commandDatabase.hasOwnProperty(command)) {
-              window.location.href = commandDatabase[command];
+                window.open(commandDatabase[command], "_blank");
             } else {
-              alert("Command not recognized.");
+                alert("Command not recognized.");
             }
-          }
         }
-      });
+    }
+});
 
 /*document.addEventListener('DOMContentLoaded', function () {
     // Get the source div and target canvas elements
