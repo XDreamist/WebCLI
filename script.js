@@ -5,6 +5,7 @@ var commandDatabase = {
     "discord": "https://discord.com/channels/@me",
     "github": "https://github.com/",
     "gpt": "https://chat.openai.com/",
+    "pixabay": "https://pixabay.com/",
     "edit self": "https://github.com/XDreamist/XDreamist.gihub.io",
 
 };
