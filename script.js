@@ -8,7 +8,7 @@ var commandDatabase = {
     "pixabay": "https://pixabay.com/",
     "edit self": "https://github.com/XDreamist/XDreamist.gihub.io",
     "notion": "https://www.notion.so",
-    "wazir": "wazirx.com/funds",
+    "wazir": "https://wazirx.com/funds",
     "tradeview": "https://in.tradingview.com/",
     "": "",
 
