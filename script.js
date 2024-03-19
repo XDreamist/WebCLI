@@ -8,6 +8,9 @@ var commandDatabase = {
     "pixabay": "https://pixabay.com/",
     "edit self": "https://github.com/XDreamist/XDreamist.gihub.io",
     "notion": "https://www.notion.so",
+    "wazir": "wazirx.com/funds",
+    "tradeview": "https://in.tradingview.com/",
+    "": "",
 
 };
 var terminalQueue = [];
@@ -126,13 +129,6 @@ function setSymbol(symbol, parent) {
 
     parent.appendChild(space);
 }
-
-function playSoundEffect() {
-    var audio = new Audio("ref/Retro Text.mp3");
-    audio.play();
-}
-
-
 
 function processNext() {
     if (terminalQueue.length > 0) {
