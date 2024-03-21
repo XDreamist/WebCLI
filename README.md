@@ -9,3 +9,5 @@
 
 * [**Effects/Chat**](https://www.youtube.com/watch?app=desktop&v=rtzu2QZYfsE)  
   ![Effects/Chat](ref/effect.png)
+
+* https://babylonjs.medium.com/retro-crt-shader-a-post-processing-effect-study-1cb3f783afbc
