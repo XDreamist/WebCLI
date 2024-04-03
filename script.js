@@ -142,6 +142,58 @@ function processNext() {
     }
 }
 
+window.onload = function () {
+    var canvas = document.getElementById("curvatureCanvas");
+    var ctx = canvas.getContext("2d");
+
+    // Set canvas size to match the window size
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    // Curvature parameters
+    var curvature = 100;
+
+    // Function to apply curvature effect
+    function applyCurvature() {
+        var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        var data = imageData.data;
+
+        for (var y = 0; y < canvas.height; y++) {
+            for (var x = 0; x < canvas.width; x++) {
+                var index = (y * canvas.width + x) * 4;
+
+                var dx = x - canvas.width / 2;
+                var dy = y - canvas.height / 2;
+                var distance = Math.sqrt(dx * dx + dy * dy);
+
+                var amount = distance / curvature;
+                var offset = Math.sin(amount) * curvature;
+
+                var newIndex = ((y + offset) * canvas.width + x) * 4;
+
+                if (newIndex >= 0 && newIndex < data.length) {
+                    data[index] = data[newIndex]; // Red
+                    data[index + 1] = data[newIndex + 1]; // Green
+                    data[index + 2] = data[newIndex + 2]; // Blue
+                    data[index + 3] = data[newIndex + 3]; // Alpha
+                }
+            }
+        }
+
+        ctx.putImageData(imageData, 0, 0);
+    }
+
+    // Apply curvature effect
+    applyCurvature();
+
+    // Reapply curvature effect on window resize
+    window.onresize = function () {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        applyCurvature();
+    };
+};
+
 addResponse('<', "WELCOME TO WARP SYSTEMS CONTROL");
 terminalQueue.push({ symbol: '<', response: "TYPE 'HELP' FOR MORE COMMANDS" });
 terminalQueue.push({ symbol: '>'});
