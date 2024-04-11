@@ -113,6 +113,58 @@ h2 {
     padding-top: 20px !important;
 }
 
+.status-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+@keyframes scaleAnimation {
+    0% {
+        transform: scale(1); /* Initial scale */
+    }
+    50% {
+        transform: scale(1.1); /* Scale up by 10% */
+    }
+    100% {
+        transform: scale(1); /* Return to original scale */
+    }
+}
+
+#casper-1,
+#casper-2,
+#casper-3,
+#casper-4 {
+    height: 70%;
+    width: 70%;
+    position: absolute;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    pointer-events: none;
+    z-index: 1;
+}
+
+#casper-1 {
+    background-image: url(ref/Casper_1.png);
+    animation: scaleAnimation 4s infinite;
+}
+
+#casper-2 {
+    background-image: url(ref/Casper_2.png);
+    animation: scaleAnimation 4s infinite;
+}
+
+#casper-3 {
+    background-image: url(ref/Casper_3.png);
+    animation: scaleAnimation 4s infinite;
+}
+
+#casper-4 {
+    background-image: url(ref/Casper_4.png);
+    animation: scaleAnimation 4s infinite;
+}
+
 .main > div {
     padding: 25px 20px;
     display: flex;
