@@ -100,16 +100,28 @@ h2 {
     height: 100%;
     width: 100%;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    align-items: center;
     padding: 20px;
 }
 
+@media (max-width: 767px) {
+    .main {
+        flex-direction: column;
+    }
+
+    .status-container {
+        order: -1;
+        /*width: 100% !important;*/
+    }
+}
+
 .content-container {
-    width: 55%;
+    width: 100%;
 }
 
 .status-container {
-    width: 45%;
+    width: 80%;
     padding-top: 20px !important;
 }
 
@@ -171,6 +183,7 @@ h2 {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    height: 100%;
 }
 
 .main > div > div {
