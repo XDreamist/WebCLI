@@ -112,7 +112,11 @@ h2 {
 
     .status-container {
         order: -1;
-        /*width: 100% !important;*/
+        padding-bottom: 20px !important;
+    }
+
+    .content-container {
+        padding-bottom: 20px !important;
     }
 }
 

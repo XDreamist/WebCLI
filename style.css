@@ -1,0 +1,199 @@
+@font-face {
+  font-family: "MONO";
+  src: url("fonts/VCR_OSD_MONO_1.001.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+*,
+*::before,
+*::after {
+  padding: 0%;
+  margin: 0%;
+  box-sizing: border-box;
+  cursor: none;
+}
+
+body {
+  font-family: "MONO";
+  background-color: hsl(0, 0%, 9%);
+  color: #326c20;
+  overflow: hidden;
+}
+
+#rectCursor {
+  position: absolute;
+  width: 10px;
+  height: 20px;
+  background-color: #326c20;
+  pointer-events: none;
+  z-index: 2;
+}
+
+#scanLines {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: repeating-linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1) 5px, transparent 5px, transparent 10px);
+  pointer-events: none;
+  z-index: 3;
+}
+
+#vignette {
+  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/86186/crt.png);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+#terminal-input {
+  background: none;
+  color: #326c20;
+  width: 100%;
+  border: none;
+  text-decoration: none;
+  font-family: "MONO";
+  outline: none;
+  font-size: 16px;
+  font-weight: 100;
+  z-index: 1;
+}
+
+#command-response {
+  width: 100%;
+}
+
+#command-symbol {
+  pointer-events: none;
+  user-select: none;
+  padding-right: 10px;
+}
+
+#command-line {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+h1 {
+  font-size: 50px;
+  font-weight: 100;
+}
+
+h2 {
+  font-size: 30px;
+}
+
+.main {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+@media (max-width: 767px) {
+  .main {
+    flex-direction: column;
+  }
+}
+
+.status-container {
+  width: 100%;
+}
+@media (max-width: 767px) {
+  .status-container {
+    order: -1;
+  }
+}
+
+.status-container {
+  width: 80%;
+}
+
+.status-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+@keyframes scaleAnimation {
+  0% {
+    transform: scale(1); /* Initial scale */
+  }
+  50% {
+    transform: scale(1.1); /* Scale up by 10% */
+  }
+  100% {
+    transform: scale(1); /* Return to original scale */
+  }
+}
+#casper-1,
+#casper-2,
+#casper-3,
+#casper-4 {
+  height: 70%;
+  width: 70%;
+  position: absolute;
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  pointer-events: none;
+  z-index: 1;
+}
+
+#casper-1 {
+  background-image: url(ref/Casper_1.png);
+  animation: scaleAnimation 4s infinite;
+}
+
+#casper-2 {
+  background-image: url(ref/Casper_2.png);
+  animation: scaleAnimation 4s infinite;
+}
+
+#casper-3 {
+  background-image: url(ref/Casper_3.png);
+  animation: scaleAnimation 4s infinite;
+}
+
+#casper-4 {
+  background-image: url(ref/Casper_4.png);
+  animation: scaleAnimation 4s infinite;
+}
+
+.main > div {
+  padding: 25px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+}
+.main > div > div {
+  height: 100%;
+  width: 100%;
+  border: 5px solid #326c20;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+::selection {
+  background-color: #326c20;
+  color: hsl(0, 0%, 9%);
+}
+
+::-moz-selection {
+  background-color: #326c20;
+  color: hsl(0, 0%, 9%);
+}
+
+/*# sourceMappingURL=style.css.map */
