@@ -1,14 +1,14 @@
 @font-face {
   font-family: "Trenda-Bold";
   src: url("fonts/Latinotype\ \ Trenda\ Bold.otf") format("truetype");
-  font-weight: normal;
+  font-weight: bold;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Trenda-Regular";
   src: url("fonts/Latinotype\ \ Trenda\ Regular.otf") format("truetype");
-  font-weight: normal;
+  font-weight: bolder;
   font-style: normal;
 }
 
@@ -22,6 +22,7 @@
 
 body {
   font-family: "Trenda-Regular";
+  letter-spacing: 0.8pt;
   font-size: 12px;
   width: 100%;
   height: 100%;
@@ -29,6 +30,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-image: url('./Umesh__P.png');
 }
 
 a {
@@ -43,20 +45,22 @@ b {
 h1 {
   position: relative;
   font-family: "Trenda-Bold";
+  letter-spacing: 2pt;
   font-size: 40px;
 }
 
 h2 {
   position: relative;
   font-family: "Trenda-Bold";
+  letter-spacing: 1pt;
   font-size: 20px;
-  margin: 10px 0;
+  margin: 25px 0;
 }
 
 h2::after {
   content: '';
   position: absolute;
-  bottom: -3px;
+  bottom: -7px;
   left: 0;
   width: 30px;
   height: 3px;
@@ -66,6 +70,7 @@ h2::after {
 h3 {
   position: relative;
   font-family: "Trenda-Bold";
+  letter-spacing: 1pt;
   font-size: 12px;
 }
 
@@ -73,15 +78,16 @@ h3 {
   position: relative;
   width: 100%;
   height: 1.5px;
-  background-color: #00000040;
+  background-color: #00000030;
   margin-top: 10px;
 }
 
 .vertical-line {
   position: relative;
-  width: 1px;
+  width: 5px;
   height: 100%;
-  background-color: #00000040;
+  background-color: #00000030;
+  margin: 0 10px;
 }
 
 .resume-container {
@@ -108,16 +114,34 @@ h3 {
 .content-container {
   position: relative;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   /* align-items: center; */
   width: 100%;
-  height: 100%;
+  height: 90vh;
 }
 
-/* .left-content { */
-  /* width: 25%; */
-/* } */
+.left-content {
+  h3 {
+    letter-spacing: 0pt;
+    margin-top: 15px;
+    margin-bottom: 8px;
+  }
+  p {
+    letter-spacing: 0.5pt;
+  }
+}
 
-/* .right-content { */
-  /* width: 75%; */
-/* } */
+.right-content {
+  h2 {
+    margin-left: 25px;
+  }
+  h3 {
+    margin-left: 25px;
+  }
+  p {
+    margin-left: 25px;
+  }
+  ul {
+    margin-left: 40px;
+  }
+}
