@@ -1,3 +1,12 @@
+import CCursor from "./src/cursor.js"
+customElements.define('mouse-cursor', CCursor)
+new CCursor
+
+
+import CTerimal from "./src/terminal.js";
+customElements.define('web-terminal', CTerimal)
+new CTerimal(document.getElementById("content-container"))
+
 
 var terminal = document.getElementById("terminal");
 var commandDatabase = {
@@ -11,23 +20,11 @@ var commandDatabase = {
     "wazir": "https://wazirx.com/funds",
     "tradeview": "https://in.tradingview.com/",
     "show cv": window.location.href + "resume.html",
-
 };
 var terminalQueue = [];
-var audio = new Audio("ref/Retro Text.mp3");
+var audio = new Audio("public/Retro Text.mp3");
 audio.loop = true;
 
-document.addEventListener("DOMContentLoaded", function () {
-    const rectangleCursor = document.getElementById("rectCursor");
-
-    document.addEventListener("mousemove", function (e) {
-        const x = e.clientX;
-        const y = e.clientY;
-        
-        rectangleCursor.style.left = x - (rectangleCursor.clientWidth / 2) + "px";
-        rectangleCursor.style.top = y - (rectangleCursor.clientHeight / 2 ) + "px";
-    });
-});
 
 function addCommandLine() {
     var line = document.createElement("p");
@@ -40,7 +37,8 @@ function addCommandLine() {
 
     commandLine.addEventListener("keypress", function(event) {
         if (event.key === "Enter") {
-            if (command = commandLine.value.toLowerCase().trim()) {
+            const command = commandLine.value.toLowerCase().trim();
+            if (command) {
                 commandLine.disabled = true;
                 checkCommand(command);
             }

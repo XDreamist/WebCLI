@@ -23,14 +23,14 @@ body {
     background-color: rgba(255, 255, 255, 0.7);*/
 }
 
-#rectCursor {
+/* #rectCursor {
     position: absolute;
     width: 10px;
     height: 20px;
     background-color: #326c20;
     pointer-events: none;
     z-index: 2;
-}
+} */
 
 #scanLines {
     position: fixed;
@@ -120,7 +120,7 @@ h2 {
     }
 }
 
-.content-container {
+#content-container {
     width: 100%;
 }
 
@@ -162,22 +162,22 @@ h2 {
 }
 
 #casper-1 {
-    background-image: url(ref/Casper_1.png);
+    background-image: url(public/Casper_1.png);
     animation: scaleAnimation 4s infinite;
 }
 
 #casper-2 {
-    background-image: url(ref/Casper_2.png);
+    background-image: url(public/Casper_2.png);
     animation: scaleAnimation 4s infinite;
 }
 
 #casper-3 {
-    background-image: url(ref/Casper_3.png);
+    background-image: url(public/Casper_3.png);
     animation: scaleAnimation 4s infinite;
 }
 
 #casper-4 {
-    background-image: url(ref/Casper_4.png);
+    background-image: url(public/Casper_4.png);
     animation: scaleAnimation 4s infinite;
 }
 
