@@ -3,9 +3,9 @@ customElements.define('mouse-cursor', CCursor)
 new CCursor
 
 
-import CTerimal from "./src/terminal.js";
-customElements.define('web-terminal', CTerimal)
-new CTerimal(document.getElementById("content-container"))
+// import CTerimal from "./src/terminal.js";
+// customElements.define('web-terminal', CTerimal)
+// new CTerimal(document.getElementById("content-container"))
 
 
 var terminal = document.getElementById("terminal");
