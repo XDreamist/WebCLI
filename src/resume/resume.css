@@ -30,7 +30,6 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-image: url('./Umesh__P.png');
 }
 
 a {
@@ -89,6 +88,16 @@ h3 {
   background-color: #00000030;
   margin: 0 10px;
 }
+
+.image-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url('./public/Umesh__P.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 20%;
+} 
 
 .resume-container {
   position: relative;

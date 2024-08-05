@@ -19,7 +19,7 @@ var commandDatabase = {
     "notion": "https://www.notion.so",
     "wazir": "https://wazirx.com/funds",
     "tradeview": "https://in.tradingview.com/",
-    "show cv": window.location.href + "resume.html",
+    "show cv": window.location.href + "../src/resume/resume.html",
 };
 var terminalQueue = [];
 var audio = new Audio("public/Retro Text.mp3");
