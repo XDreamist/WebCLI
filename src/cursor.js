@@ -24,8 +24,8 @@ export default class CCursor extends HTMLElement {
         this.position.x = event.clientX;
         this.position.y = event.clientY;
 
-        this.style.left = this.position.x - (this.clientWidth / 2) + "px";
-        this.style.top = this.position.y - (this.clientHeight / 2 ) + "px";
+        this.style.left = `${this.position.x - (this.clientWidth / 2)}px`;
+        this.style.top = `${this.position.y - (this.clientHeight / 2 )}px`;
     }
 
     applyStyles() {

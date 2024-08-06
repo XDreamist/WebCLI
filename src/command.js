@@ -51,7 +51,7 @@ export default class CCommand {
             case "response": {
                 this.setSymbol("< ");
 
-                const response = `'${ this.data }'`;
+                const response = `${ this.data }`;
 
                 content = document.createElement("p");
                 content.id = "command-response";
