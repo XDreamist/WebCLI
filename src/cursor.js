@@ -7,8 +7,13 @@ export default class CCursor extends HTMLElement {
             y: 0
         }
 
-        this.id = "rectCursor";
-        this.applyStyles();
+        this.style.cssText = `
+        position: absolute;
+        width: 10px;
+        height: 20px;
+        background-color: #326c20;
+        pointer-events: none;
+        z-index: 2;`;
 
         document.body.appendChild(this);
         
@@ -24,11 +29,6 @@ export default class CCursor extends HTMLElement {
     }
 
     applyStyles() {
-        this.style.position = "absolute";
-        this.style.width = "10px";
-        this.style.height = "20px";
-        this.style.backgroundColor = "#326c20";
-        this.style.pointerEvents = "none";
-        this.style.zIndex = 2;
+
     }
 }

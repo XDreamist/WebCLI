@@ -20,15 +20,6 @@ body {
   overflow: hidden;
 }
 
-#rectCursor {
-  position: absolute;
-  width: 10px;
-  height: 20px;
-  background-color: #326c20;
-  pointer-events: none;
-  z-index: 2;
-}
-
 #scanLines {
   position: fixed;
   top: 0;
@@ -178,6 +169,7 @@ h2 {
   flex-direction: column;
   height: 100%;
 }
+
 .main > div > div {
   height: 100%;
   width: 100%;
@@ -195,5 +187,3 @@ h2 {
   background-color: #326c20;
   color: hsl(0, 0%, 9%);
 }
-
-/*# sourceMappingURL=style.css.map */

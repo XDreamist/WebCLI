@@ -1,22 +1,29 @@
-export default class CTerimal extends HTMLElement {
-    constructor(parent) {
-        super();
-        parent.appendChild(this);
+import CCommand from "./command.js";
 
-        addResponse('<', "WELCOME TO WARP SYSTEMS CONTROL");
-        terminalQueue.push({ symbol: '<', response: "TYPE 'HELP' FOR MORE COMMANDS" });
-        terminalQueue.push({ symbol: '>'});
+export default class CTerminal extends HTMLElement {
+    constructor() {
+        super();
+
+        this.style.cssText = `
+        height: 100%;
+        width: 100%;
+        border: 5px solid #326c20;
+        border-radius: 10px;
+        padding: 10px;`;
+
+        new CCommand(this, "response", "WELCOME TO WARP SYSTEMS CONTROL")
     }
     
-    processNext() {
-        if (terminalQueue.length > 0) {
-            const nextElement = terminalQueue.shift();
-            if (nextElement.symbol == '>') {
-                addCommandLine();
-            }
-            else {
-            addResponse(nextElement.symbol, nextElement.response);
-            }
+    processCommand(type, command) {
+        if (command === "done") {
+            new CCommand(this, "input", "");
         }
+        if (type === "input") {
+            this.checkInput(command);
+        }
+    }
+
+    checkInput() {
+        console.log('afaf')
     }
 }

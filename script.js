@@ -3,144 +3,144 @@ customElements.define('mouse-cursor', CCursor)
 new CCursor
 
 
-// import CTerimal from "./src/terminal.js";
-// customElements.define('web-terminal', CTerimal)
-// new CTerimal(document.getElementById("content-container"))
+import CTerminal from "./src/terminal.js";
+customElements.define('web-terminal', CTerminal)
+document.getElementById("content-container").appendChild(new CTerminal())
 
 
-var terminal = document.getElementById("terminal");
-var commandDatabase = {
-    "youtube": "https://www.youtube.com",
-    "discord": "https://discord.com/channels/@me",
-    "github": "https://github.com/",
-    "gpt": "https://chat.openai.com/",
-    "pixabay": "https://pixabay.com/",
-    "edit self": "https://github.com/XDreamist/XDreamist.gihub.io",
-    "notion": "https://www.notion.so",
-    "wazir": "https://wazirx.com/funds",
-    "tradeview": "https://in.tradingview.com/",
-    "show cv": window.location.href + "../src/resume/resume.html",
-};
-var terminalQueue = [];
-var audio = new Audio("public/Retro Text.mp3");
-audio.loop = true;
+// var terminal = document.getElementById("terminal");
+// var commandDatabase = {
+//     "youtube": "https://www.youtube.com",
+//     "discord": "https://discord.com/channels/@me",
+//     "github": "https://github.com/",
+//     "gpt": "https://chat.openai.com/",
+//     "pixabay": "https://pixabay.com/",
+//     "edit self": "https://github.com/XDreamist/XDreamist.gihub.io",
+//     "notion": "https://www.notion.so",
+//     "wazir": "https://wazirx.com/funds",
+//     "tradeview": "https://in.tradingview.com/",
+//     "show cv": window.location.href + "../src/resume/resume.html",
+// };
+// var terminalQueue = [];
+// var audio = new Audio("public/Retro Text.mp3");
+// audio.loop = true;
 
 
-function addCommandLine() {
-    var line = document.createElement("p");
-    line.id = "command-line";
-    setSymbol("> ", line);
+// function addCommandLine() {
+//     var line = document.createElement("p");
+//     line.id = "command-line";
+//     setSymbol("> ", line);
 
-    var commandLine = document.createElement("input");
-    commandLine.type = "text";
-    commandLine.id = "terminal-input";
+//     var commandLine = document.createElement("input");
+//     commandLine.type = "text";
+//     commandLine.id = "terminal-input";
 
-    commandLine.addEventListener("keypress", function(event) {
-        if (event.key === "Enter") {
-            const command = commandLine.value.toLowerCase().trim();
-            if (command) {
-                commandLine.disabled = true;
-                checkCommand(command);
-            }
-        }
-    });
+//     commandLine.addEventListener("keypress", function(event) {
+//         if (event.key === "Enter") {
+//             const command = commandLine.value.toLowerCase().trim();
+//             if (command) {
+//                 commandLine.disabled = true;
+//                 checkCommand(command);
+//             }
+//         }
+//     });
 
-    commandLine.addEventListener("input", function() {
-        this.value = this.value.toUpperCase();
-    });
+//     commandLine.addEventListener("input", function() {
+//         this.value = this.value.toUpperCase();
+//     });
 
-    line.appendChild(commandLine);
-    terminal.appendChild(line);
+//     line.appendChild(commandLine);
+//     terminal.appendChild(line);
 
-    setTimeout(function() {
-        commandLine.focus();
-    }, 10);
-}
+//     setTimeout(function() {
+//         commandLine.focus();
+//     }, 10);
+// }
   
-function checkCommand(command) {
-    if (command.startsWith("search ")) {
+// function checkCommand(command) {
+//     if (command.startsWith("search ")) {
 
-        var keyword = command.substring(7);
-        window.open("https://www.google.com/search?q=" + encodeURIComponent(keyword), "_blank");
+//         var keyword = command.substring(7);
+//         window.open("https://www.google.com/search?q=" + encodeURIComponent(keyword), "_blank");
 
-        showResponse(keyword, "search");
-        terminalQueue.push({ symbol: '>'});
-    } else {
-        if (commandDatabase.hasOwnProperty(command)) {
-            window.open(commandDatabase[command], "_blank");
-            showResponse(command, "open");
-            terminalQueue.push({ symbol: '>'});
-        } else {
-            showResponse(command, "invalid");
-            terminalQueue.push({ symbol: '>'});
-        }
-    }
-}
+//         showResponse(keyword, "search");
+//         terminalQueue.push({ symbol: '>'});
+//     } else {
+//         if (commandDatabase.hasOwnProperty(command)) {
+//             window.open(commandDatabase[command], "_blank");
+//             showResponse(command, "open");
+//             terminalQueue.push({ symbol: '>'});
+//         } else {
+//             showResponse(command, "invalid");
+//             terminalQueue.push({ symbol: '>'});
+//         }
+//     }
+// }
 
-function showResponse(keyword, response_type) {
-    keyword = keyword.toUpperCase();
-    switch (response_type) {
-        case "search":
-            addResponse("< ", "SEARCHING " + keyword + "....");
-            break;
-        case "open":
-            addResponse("< ", "OPENING " + keyword + "....");
-            break;
-        case "invalid":
-            addResponse("! ", "INVALID COMMAND '" + keyword + "'");
-            break;
-        default:
-            addResponse(": ", "Uh!!!");
-            break;
-    }
-}
+// function showResponse(keyword, response_type) {
+//     keyword = keyword.toUpperCase();
+//     switch (response_type) {
+//         case "search":
+//             addResponse("< ", "SEARCHING " + keyword + "....");
+//             break;
+//         case "open":
+//             addResponse("< ", "OPENING " + keyword + "....");
+//             break;
+//         case "invalid":
+//             addResponse("! ", "INVALID COMMAND '" + keyword + "'");
+//             break;
+//         default:
+//             addResponse(": ", "Uh!!!");
+//             break;
+//     }
+// }
 
-function addResponse(symbol, response) {
-    var line = document.createElement("p");
-    line.id = "command-line";
-    setSymbol(symbol, line);
+// function addResponse(symbol, response) {
+//     var line = document.createElement("p");
+//     line.id = "command-line";
+//     setSymbol(symbol, line);
 
-    var command = document.createElement("p");
-    command.id = "command-response";
+//     var command = document.createElement("p");
+//     command.id = "command-response";
 
-    line.appendChild(command);
-    terminal.appendChild(line);
+//     line.appendChild(command);
+//     terminal.appendChild(line);
 
-    var index = 0;
-    audio.play();
-    var typingEffect = setInterval(function() {
-        command.textContent += response[index];
-        index++;
+//     var index = 0;
+//     audio.play();
+//     var typingEffect = setInterval(function() {
+//         command.textContent += response[index];
+//         index++;
 
-        if (index >= response.length) {
-            clearInterval(typingEffect);
-            processNext();
-            audio.pause();
-        }
-    }, 15);
-}
+//         if (index >= response.length) {
+//             clearInterval(typingEffect);
+//             processNext();
+//             audio.pause();
+//         }
+//     }, 15);
+// }
 
-function setSymbol(symbol, parent) {
-    var space = document.createElement("a");
-    space.id = "command-symbol";
-    space.textContent = symbol;
+// function setSymbol(symbol, parent) {
+//     var space = document.createElement("a");
+//     space.id = "command-symbol";
+//     space.textContent = symbol;
 
-    parent.appendChild(space);
-}
+//     parent.appendChild(space);
+// }
 
-function processNext() {
-    if (terminalQueue.length > 0) {
-        var nextElement = terminalQueue.shift();
-        if (nextElement.symbol == '>') {
-            addCommandLine();
-        }
-        else {
-        addResponse(nextElement.symbol, nextElement.response);
-        }
-    }
-}
+// function processNext() {
+//     if (terminalQueue.length > 0) {
+//         var nextElement = terminalQueue.shift();
+//         if (nextElement.symbol == '>') {
+//             addCommandLine();
+//         }
+//         else {
+//         addResponse(nextElement.symbol, nextElement.response);
+//         }
+//     }
+// }
 
-window.onload = function () {
+window.onload = () => {
     var canvas = document.getElementById("curvatureCanvas");
     var ctx = canvas.getContext("2d");
 
@@ -192,6 +192,6 @@ window.onload = function () {
     };
 };
 
-addResponse('<', "WELCOME TO WARP SYSTEMS CONTROL");
-terminalQueue.push({ symbol: '<', response: "TYPE 'HELP' FOR MORE COMMANDS" });
-terminalQueue.push({ symbol: '>'});
+// addResponse('<', "WELCOME TO WARP SYSTEMS CONTROL");
+// terminalQueue.push({ symbol: '<', response: "TYPE 'HELP' FOR MORE COMMANDS" });
+// terminalQueue.push({ symbol: '>'});
