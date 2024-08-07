@@ -55,6 +55,9 @@ export default class CTerminal extends HTMLElement {
         else if (command === "help") {
             this.help();
         }
+        else if (command === "download") {
+            this.download();
+        }
         else {
             if (command in this.commandDatabase) {
                 new CCommand(this, "open", command);
@@ -90,5 +93,17 @@ export default class CTerminal extends HTMLElement {
         `;
         
         new CCommand(this, "response", helpText);
+    }
+
+    download() {
+        const cvUrl = this.commandDatabase["download cv"];
+        const a = document.createElement('a');
+        a.href = cvUrl;
+        a.download = 'Umesh P.pdf';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+
+        new CCommand(this, "input", "");
     }
 }

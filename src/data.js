@@ -10,4 +10,5 @@ export const commandDatabase = {
     "tradeview": "https://in.tradingview.com/",
     
     "show cv": `${window.location.href}../src/resume/resume.html`,
+    "download cv": `${window.location.href}../Umesh P.pdf`
 };
