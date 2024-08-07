@@ -76,17 +76,17 @@ h3 {
 .horizontal-line {
   position: relative;
   width: 100%;
-  height: 1.5px;
+  height: 0.1vh;
   background-color: #00000030;
   margin-top: 10px;
 }
 
 .vertical-line {
   position: relative;
-  width: 5px;
+  width: 0.14vw;
   height: 95%;
   background-color: #00000030;
-  margin: 0 10px;
+  margin: 0 10px 0 25px;
 }
 
 .image-container {
@@ -105,9 +105,9 @@ h3 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 85%;
+  width: 88%; /*842px;*/
   height: 100%;
-  margin: 30px 0;
+  margin-top: 30px;
   opacity: 100%;
 }
 
@@ -130,6 +130,12 @@ h3 {
   height: 90vh;
 }
 
+.work-exp {
+  display: flex;
+  justify-content: space-between;
+  margin-right: 25px;
+}
+
 .left-content {
   h3 {
     letter-spacing: 0pt;
@@ -138,6 +144,7 @@ h3 {
   }
   p {
     letter-spacing: 0.5pt;
+    line-height: 15pt;
   }
 }
 
@@ -150,8 +157,12 @@ h3 {
   }
   p {
     margin-left: 25px;
+    line-height: 13pt;
   }
   ul {
     margin-left: 40px;
+  }
+  .horizontal-line {
+    margin-top: 25px;
   }
 }
