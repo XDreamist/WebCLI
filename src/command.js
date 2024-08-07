@@ -2,7 +2,7 @@ export default class CCommand {
     constructor(parent, type, data) {
         this.parent = parent;
         this.type = type;
-        this.data = data;
+        this.data = data.toUpperCase();
 
         this.line = document.createElement("p");
         this.line.id = "command-line";
@@ -11,11 +11,23 @@ export default class CCommand {
     }
 
     setSymbol(symbol) {
-        const space = document.createElement("a");
+        const space = document.createElement("span");
         space.id = "command-symbol";
         space.textContent = symbol;
     
         this.line.appendChild(space);
+    }
+
+    createTypingEffect(contentElement, text, callback) {
+        let index = 0;
+        const typingEffect = setInterval(() => {
+            contentElement.textContent += text[index];
+            index++;
+            if (index >= text.length) {
+                clearInterval(typingEffect);
+                if (callback) callback();
+            }
+        }, 15);
     }
 
     addContent() {
@@ -30,10 +42,18 @@ export default class CCommand {
             
                 content.addEventListener("keypress", (event) => {
                     if (event.key === "Enter") {
-                        const command = content.value.toLowerCase().trim();
+                        const command = content.value;
                         if (command) {
                             content.disabled = true;
                             this.parent.processCommand("input", command);
+
+                            content.remove();
+
+                            content = document.createElement("p");
+                            content.id = "command-response";
+                            content.textContent = command;
+
+                            this.line.appendChild(content);
                         }
                     }
                 });
@@ -42,9 +62,7 @@ export default class CCommand {
                     content.value = content.value.toUpperCase();
                 });
             
-                setTimeout(() => {
-                    content.focus();
-                }, 10);
+                setTimeout(() => content.focus(), 10);
 
                 break;
             }
@@ -63,7 +81,7 @@ export default class CCommand {
             
                     if (index >= response.length) {
                         clearInterval(typingEffect);
-                        this.parent.processCommand("response", "done");
+                        this.parent.processCommand("response", "complete");
                     }
                 }, 15);
 
@@ -84,7 +102,7 @@ export default class CCommand {
             
                     if (index >= output.length) {
                         clearInterval(typingEffect);
-                        this.parent.processCommand("invalid", "done");
+                        this.parent.processCommand("invalid", "complete");
                     }
                 }, 15);
 
@@ -95,9 +113,9 @@ export default class CCommand {
                 break;
             }
             case "search": {
-                this.setSymbol("Q ");
+                this.setSymbol("< ");
 
-                const output = `SEARCHING '${ this.data }....'`;
+                const output = `SEARCHING '${ this.data }'....`;
 
                 content = document.createElement("p");
                 content.id = "command-response";
@@ -109,7 +127,28 @@ export default class CCommand {
             
                     if (index >= output.length) {
                         clearInterval(typingEffect);
-                        this.parent.processCommand("invalid", "done");
+                        this.parent.processCommand("search", this.data);
+                    }
+                }, 15);
+
+                break;
+            }
+            case "open": {
+                this.setSymbol("< ");
+
+                const output = `OPENING '${ this.data }'....`;
+
+                content = document.createElement("p");
+                content.id = "command-response";
+            
+                let index = 0;
+                const typingEffect = setInterval(() => {
+                    content.textContent += output[index];
+                    index++;
+            
+                    if (index >= output.length) {
+                        clearInterval(typingEffect);
+                        this.parent.processCommand("open", this.data);
                     }
                 }, 15);
 
@@ -130,7 +169,7 @@ export default class CCommand {
             
                     if (index >= output.length) {
                         clearInterval(typingEffect);
-                        this.parent.processCommand("confused", "done");
+                        this.parent.processCommand("confused", "complete");
                     }
                 }, 15);
 
@@ -140,93 +179,5 @@ export default class CCommand {
 
         this.line.appendChild(content);
         this.parent.appendChild(this.line);
-    }
-
-    addCommandLine() {
-        this.setSymbol("> ", line);
-    
-        const commandLine = document.createElement("input");
-        commandLine.type = "text";
-        commandLine.id = "terminal-input";
-    
-        commandLine.addEventListener("keypress", function(event) {
-            if (event.key === "Enter") {
-                const command = commandLine.value.toLowerCase().trim();
-                if (command) {
-                    commandLine.disabled = true;
-                    this.checkCommand(command);
-                }
-            }
-        });
-    
-        commandLine.addEventListener("input", function() {
-            this.value = this.value.toUpperCase();
-        });
-    
-        line.appendChild(commandLine);
-        this.parent.appendChild(line);
-    
-        setTimeout(function() {
-            commandLine.focus();
-        }, 10);
-    }
-      
-    checkCommand(command) {
-        if (command.startsWith("search ")) {
-    
-            const keyword = command.substring(7);
-            window.open("https://www.google.com/search?q=" + encodeURIComponent(keyword), "_blank");
-    
-            showResponse(keyword, "search");
-            terminalQueue.push({ symbol: '>'});
-        } else {
-            if (commandDatabase.hasOwnProperty(command)) {
-                window.open(commandDatabase[command], "_blank");
-                showResponse(command, "open");
-                terminalQueue.push({ symbol: '>'});
-            } else {
-                showResponse(command, "invalid");
-                terminalQueue.push({ symbol: '>'});
-            }
-        }
-    }
-    
-    showResponse(keyword, response_type) {
-        keyword = keyword.toUpperCase();
-        switch (response_type) {
-            case "search":
-                addResponse("< ", "SEARCHING " + keyword + "....");
-                break;
-            case "open":
-                addResponse("< ", "OPENING " + keyword + "....");
-                break;
-            case "invalid":
-                addResponse("! ", "INVALID COMMAND '" + keyword + "'");
-                break;
-            default:
-                addResponse(": ", "Uh!!!");
-                break;
-        }
-    }
-    
-    addResponse(response) {
-        const command = document.createElement("p");
-        command.id = "command-response";
-    
-        line.appendChild(command);
-        terminal.appendChild(line);
-    
-        const index = 0;
-        audio.play();
-        const typingEffect = setInterval(function() {
-            command.textContent += response[index];
-            index++;
-    
-            if (index >= response.length) {
-                clearInterval(typingEffect);
-                processNext();
-                audio.pause();
-            }
-        }, 15);
     }
 }
