@@ -9,6 +9,6 @@ export const commandDatabase = {
     "tradeview": [ "https://in.tradingview.com/", "OPENING 'TRADINGVIEW'...." ],
 
     "show repo": [ "https://github.com/XDreamist/WebCLI", "OPENING REPO...." ],
-    "show cv": [ `${window.location.href}src/resume/resume.html`, "SHOWING CV...." ],
-    "download cv": [ `${window.location.href}Umesh P.pdf`, "DOWNLOADING CV...." ]
+    "show cv": [ `${window.location.origin}/src/resume/resume.html`, "SHOWING CV...." ],
+    "download cv": [ `${window.location.origin}/public/resume/Umesh P.pdf`, "DOWNLOADING CV...." ]
 };

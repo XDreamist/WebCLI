@@ -3,7 +3,7 @@ module.exports = {
     base: './',
     build: {
         outDir: '../../',
-        emptyOutDir: true,
+        emptyOutDir: false,
         rollupOptions: {
             input: './index.html',
             output: {

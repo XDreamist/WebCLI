@@ -1,3 +1,4 @@
+import Bot from "./bot.js";
 import CCommand from "./command.js";
 import { commandDatabase } from "./data.js";
 
@@ -17,6 +18,8 @@ export default class CTerminal extends HTMLElement {
         overflow: clip;`;
 
         this.commandDatabase = commandDatabase;
+
+        this.bot = new Bot();
 
         new CCommand(this, "response", "WELCOME TO WARP SYSTEMS CONTROL")
     }
@@ -45,7 +48,7 @@ export default class CTerminal extends HTMLElement {
         }
     }
 
-    checkInput(command) {
+    async checkInput(command) {
         if (command.startsWith("search ")) {
             const keyword = command.slice(7);
             new CCommand(this, "search", keyword);
@@ -66,6 +69,8 @@ export default class CTerminal extends HTMLElement {
                 // const botInput = document.getElementsByClassName("bpComposerInput");
                 // console.log(botInput);
                 // new CCommand(this, "invalid", command);
+                const response = await this.bot.sendMessage(command);
+                new CCommand(this, "response", response.toUpperCase());
             }
         }
     }
