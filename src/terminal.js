@@ -32,7 +32,7 @@ export default class CTerminal extends HTMLElement {
                 this.search(lCommand);
                 break;
             case "open":
-                this.open(lCommand);
+                this.open(command);
                 break;
             default:
                 if (lCommand === "complete") {
@@ -56,7 +56,7 @@ export default class CTerminal extends HTMLElement {
         else if (command === "help") {
             this.help();
         }
-        else if (command === "download") {
+        else if (command === "download cv") {
             this.download();
         }
         else {
@@ -102,7 +102,7 @@ export default class CTerminal extends HTMLElement {
     }
 
     download() {
-        const cvUrl = this.commandDatabase["download cv"];
+        const cvUrl = this.commandDatabase["download cv"][0];
         const a = document.createElement('a');
         a.href = cvUrl;
         a.download = 'Umesh P.pdf';
