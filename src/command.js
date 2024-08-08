@@ -2,7 +2,9 @@ export default class CCommand {
     constructor(parent, type, data) {
         this.parent = parent;
         this.type = type;
-        this.data = data.toUpperCase();
+
+        if (type === "open" || type === "response") this.data = data;
+        else this.data = data.toUpperCase();
 
         this.line = document.createElement("p");
         this.line.id = "command-line";
@@ -70,13 +72,15 @@ export default class CCommand {
                 this.setSymbol("< ");
 
                 const response = `${ this.data }`;
+                let buffer = "";
 
                 content = document.createElement("p");
                 content.id = "command-response";
             
                 let index = 0;
                 const typingEffect = setInterval(() => {
-                    content.textContent += response[index];
+                    buffer += response[index];
+                    content.innerHTML = buffer;
                     index++;
             
                     if (index >= response.length) {
@@ -136,7 +140,7 @@ export default class CCommand {
             case "open": {
                 this.setSymbol("< ");
 
-                const output = `OPENING '${ this.data }'....`;
+                const output = `${ this.data[1] }`;
 
                 content = document.createElement("p");
                 content.id = "command-response";
@@ -148,7 +152,7 @@ export default class CCommand {
             
                     if (index >= output.length) {
                         clearInterval(typingEffect);
-                        this.parent.processCommand("open", this.data);
+                        this.parent.processCommand("open", this.data[0]);
                     }
                 }, 15);
 

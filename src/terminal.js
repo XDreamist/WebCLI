@@ -13,7 +13,8 @@ export default class CTerminal extends HTMLElement {
         border: 5px solid #326c20;
         border-radius: 10px;
         padding: 10px;
-        row-gap: 5px;`;
+        row-gap: 5px;
+        overflow: clip;`;
 
         this.commandDatabase = commandDatabase;
 
@@ -60,9 +61,11 @@ export default class CTerminal extends HTMLElement {
         }
         else {
             if (command in this.commandDatabase) {
-                new CCommand(this, "open", command);
+                new CCommand(this, "open", this.commandDatabase[command]);
             } else {
-                new CCommand(this, "invalid", command);
+                // const botInput = document.getElementsByClassName("bpComposerInput");
+                // console.log(botInput);
+                // new CCommand(this, "invalid", command);
             }
         }
     }
@@ -77,19 +80,22 @@ export default class CTerminal extends HTMLElement {
         new CCommand(this, "input", "");
     }
 
-    open(command) {
-        window.open(this.commandDatabase[command], "_blank");
+    open(data) {
+        window.open(data, "_blank");
         new CCommand(this, "input", "");
     }
 
     help() {
         const helpText = `
-        Available Commands:
-        - search <query>: Search the web for the specified query.
-        - clear: Clear the terminal screen.
-        - help: Display this help message.
-                
-        For more information, consult the relevant documentation.
+        AVAILABLE COMMANDS:<br>
+        • SEARCH &lt;QUERY&gt;<br>
+        • SHOW CV<br>
+        • DOWNLOAD CV<br>
+        • SHOW REPO<br>
+        • CLEAR<br>
+        • HELP<br>
+        <br>
+        FOR MORE INFORMATION, CONSULT THE RELEVANT DOCUMENTATION.
         `;
         
         new CCommand(this, "response", helpText);
