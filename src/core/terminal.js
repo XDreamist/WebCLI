@@ -66,11 +66,13 @@ export default class CTerminal extends HTMLElement {
             if (command in this.commandDatabase) {
                 new CCommand(this, "open", this.commandDatabase[command]);
             } else {
-                // const botInput = document.getElementsByClassName("bpComposerInput");
-                // console.log(botInput);
-                // new CCommand(this, "invalid", command);
                 const response = await this.bot.sendMessage(command);
-                new CCommand(this, "response", response.toUpperCase());
+                if (response !== null) {
+                    new CCommand(this, "response", response.toUpperCase());
+                }
+                else {
+                    new CCommand(this, "response", "UHH!! I'M TRYING TO PROCESS THAT.");
+                }
             }
         }
     }

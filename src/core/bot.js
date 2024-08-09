@@ -9,12 +9,21 @@ export default class Bot {
 
 		this.apiUrl = `https://chat.botpress.cloud/${webhookId}`;
 
-		this.initClient();
+		this.messageCount = 0;
+
+		this.initConversation();
 	}
 
-	async initClient() {
+	async initConversation() {
 		try {
 			this.client = await chat.Client.connect({ apiUrl: this.apiUrl });
+
+			if (!this.client) {
+				throw new Error('Client is not initialized');
+			}
+
+			const { conversation } = await this.client.createConversation({});
+			this.conversation = conversation;
 		}
 		catch (error) {
 			console.error('Error initializing client:', error);
@@ -23,45 +32,43 @@ export default class Bot {
 
 	async sendMessage(userMessage) {
 		try {
-			if (!this.client) {
-				throw new Error('Client is not initialized');
+			if (!this.conversation) {
+				throw new Error('No conversation started !');
 			}
 
-			const { conversation } = await this.client.createConversation({});
-			console.log('Conversation created:', conversation);
-
 			await this.client.createMessage({
-				conversationId: conversation.id,
+				conversationId: this.conversation.id,
 				payload: {
 					type: 'text',
 					text: userMessage,
 				},
 			});
+			this.messageCount ++;
 			console.log('Message sent:', userMessage);
 
-			await new Promise((resolve) => setTimeout(resolve, 2000));
+			// Need work down here
+			await new Promise((resolve) => setTimeout(resolve, 5000));
 
 			const { messages } = await this.client.listConversationMessages({
-				id: conversation.id,
+				id: this.conversation.id,
 			});
 			console.log('Messages received:', messages);
 
 			const sortedMessages = messages.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
 			console.log('Sorted messages:', sortedMessages);
 
-			if (sortedMessages.length < 2) {
+			if (sortedMessages.length < this.messageCount + 1) {
 				console.warn('Not enough messages received');
 				return null;
 			}
 
-			const botResponse = sortedMessages[1];
-			if (botResponse && botResponse.payload) {
+			const botResponse = sortedMessages[sortedMessages.length - 1];
+			if (botResponse?.payload) {
 				console.log("Bot's response:", botResponse.payload);
 				return botResponse.payload.text;
-			} else {
-				console.warn('Bot response or payload is undefined');
-				return null;
 			}
+			console.warn('Bot response or payload is undefined');
+			return null;
 		} catch (error) {
 			console.error('Error sending message:', error);
 			return null;
