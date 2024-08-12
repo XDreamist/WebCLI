@@ -9,8 +9,8 @@ export const commandDatabase = {
     "tradeview": [ "https://in.tradingview.com/", "OPENING 'TRADINGVIEW'...." ],
 
     "show repo": [ "https://github.com/XDreamist/WebCLI", "OPENING REPO...." ],
-    "show cv": [ `${getBaseUrl()}/src/resume/resume.html`, "SHOWING CV...." ],
-    "download cv": [ `${getBaseUrl()}/public/resume/Umesh P.pdf`, "DOWNLOADING CV...." ],
+    "show cv": [ `${getBaseUrl()}src/resume/resume.html`, "SHOWING CV...." ],
+    "download cv": [ `${getBaseUrl()}public/resume/Umesh P.pdf`, "DOWNLOADING CV...." ],
     "edit bot": [ "https://studio.botpress.cloud/64aa5b7b-ffcc-430f-90e5-ef6cf1f7b859/home", "SHOWING BOT...." ]
 };
 
