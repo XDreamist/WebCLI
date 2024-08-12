@@ -8,9 +8,7 @@ export default class Bot {
 		}
 
 		this.apiUrl = `https://chat.botpress.cloud/${webhookId}`;
-
-		this.messageCount = 0;
-
+		this.messageCount = -1;
 		this.initConversation();
 	}
 
@@ -43,34 +41,51 @@ export default class Bot {
 					text: userMessage,
 				},
 			});
-			this.messageCount ++;
+			this.messageCount += 2;
 			console.log('Message sent:', userMessage);
 
-			// Need work down here
-			await new Promise((resolve) => setTimeout(resolve, 5000));
+			return await this.receiveLatestMessage();
 
-			const { messages } = await this.client.listConversationMessages({
-				id: this.conversation.id,
-			});
-			console.log('Messages received:', messages);
-
-			const sortedMessages = messages.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
-			console.log('Sorted messages:', sortedMessages);
-
-			if (sortedMessages.length < this.messageCount + 1) {
-				console.warn('Not enough messages received');
-				return null;
-			}
-
-			const botResponse = sortedMessages[sortedMessages.length - 1];
-			if (botResponse?.payload) {
-				console.log("Bot's response:", botResponse.payload);
-				return botResponse.payload.text;
-			}
-			console.warn('Bot response or payload is undefined');
-			return null;
 		} catch (error) {
 			console.error('Error sending message:', error);
+			return null;
+		}
+	}
+
+	async receiveLatestMessage() {
+		try {
+			const pollInterval = 1000;
+			const timeout = 30000;
+			const startTime = Date.now();
+
+			while (Date.now() - startTime < timeout) {
+				const { messages } = await this.client.listConversationMessages({
+					id: this.conversation.id,
+				});
+
+				const sortedMessages = messages.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+				console.log('Sorted messages:', sortedMessages);
+
+				if (sortedMessages.length > this.messageCount) {
+					const botResponse = sortedMessages[sortedMessages.length - 1];
+
+					if (botResponse?.payload) {
+						console.log("Bot's response:", botResponse.payload);
+						return botResponse.payload.text;
+					}
+
+					console.warn('Bot response or payload is undefined');
+					return null;
+				}
+
+				await new Promise((resolve) => setTimeout(resolve, pollInterval)); // Wait before polling again
+			}
+
+			console.warn('Timed out waiting for new message');
+			return null;
+
+		} catch (error) {
+			console.error('Error receiving message:', error);
 			return null;
 		}
 	}

@@ -15,7 +15,8 @@ export default class CTerminal extends HTMLElement {
         border-radius: 10px;
         padding: 10px;
         row-gap: 5px;
-        overflow: clip;`;
+        overflow: auto;
+        scrollbar-width: none`;
 
         this.commandDatabase = commandDatabase;
 
