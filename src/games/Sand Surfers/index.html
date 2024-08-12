@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@900&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto Mono:wght@700&display=swap"/>
+    
+    <!-- Css -->
+
+    <title>Game</title>
+  <script type="module" crossorigin src="./index.js"></script>
+  <link rel="modulepreload" crossorigin href="./project-settings.js">
+  <link rel="stylesheet" crossorigin href="./index.css">
+</head>
+<body>
+    <!-- Load Screen -->
+    <div id="load-screen">
+        <img id="load-img" src="./UI/Loading.png" alt="Image">
+        <div id="load-text">Loading ...</div>
+        <div id="load-meter">
+            <div id="load-bar"></div>
+            <div id="load-fill"></div>
+        </div>
+    </div>
+
+    <div id="game-display">
+
+        <!-- HUD Below  -->
+        <div id="game-hud">
+            
+            <!-- Coin UI -->
+            <div id="coin-container">
+                <span class="coin-icon"><img src="./UI/Coin Icon.svg" alt="💰"></span>
+                <span class="coin-count">0</span>
+            </div>
+
+            <!-- Score UI -->
+            <div id="score-display-container">
+                <div id="score-multi-container">
+                    <span class="score-multi-count">x1</span>
+                </div>
+                <div id="score-container">
+                    <span class="score-count">0</span>
+                </div>
+            </div>
+
+            <!-- Powerup UI -->
+            <div id="powerup-display-container">
+                <div id="powerup-proxy-container">
+                    <div id="powerup-icon-container">
+                        <span class="powerup-icon"><img src="./UI/Shoe.svg" alt="👟"></span>
+                    </div>
+                    <div id="powerup-bar-container"></div>
+                </div>
+
+            </div>
+
+            <!-- Life UI -->
+            <div id="life-display-container">
+            </div>
+        </div>
+            
+        <button id="close-button"><img src="./UI/Exit.png" alt=""></button>
+        <!-- Game UI Above -->
+
+
+        <!-- Three js renderer -->
+        <div id="game-renderer"></div>
+    </div>
+
+    <div id="game-over-screen">
+        <div id="game-over-text">GAME OVER</div>
+        <div id="game-over-line"></div>
+        <div id="game-over-your-score">Your Score</div>
+        <div id="game-over-score">0</div>
+        <div id="game-over-buttons">
+            <button id="game-over-stats"><img src="./UI/Stats.svg" alt="Stats"></button>
+            <button id="game-over-replay"><img src="./UI/Replay.svg" alt="Replay"></button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+</body>
+</html>
