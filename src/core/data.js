@@ -21,7 +21,7 @@ function getBaseUrl() {
         return url.replace('index.html', '');
     }
 
-    return window.location.origin;
+    return url;
 }
 
 // Make sure to only retrieve data from sorted Messages after it's count has increased and not before.
