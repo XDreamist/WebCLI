@@ -30,3 +30,4 @@ function getBaseUrl() {
 // Make it aware of the environment. Where it is, what site it is, what kind of purpose it serves.
 // Make it aware of all the features in the site such as games, resume, commands, portfolio, contact, etc.
 // Add more commands to turn off mouse cursor, the UI elements which can be altered for a new look or something.
+// Store all the previous user inputs so that the user can switch to older inputs in history by pressing 'up' arrow.

@@ -9,6 +9,7 @@ export default class CCommand {
         this.line = document.createElement("p");
         this.line.id = "command-line";
 
+        this.content = null;
         this.addContent();
     }
 
@@ -33,38 +34,37 @@ export default class CCommand {
     }
 
     addContent() {
-        let content;
         switch(this.type) {
             case "input": {
                 this.setSymbol("> ");
 
-                content = document.createElement("input");
-                content.type = "text";
-                content.id = "terminal-input";
+                this.content = document.createElement("input");
+                this.content.type = "text";
+                this.content.id = "terminal-input";
             
-                content.addEventListener("keypress", (event) => {
+                this.content.addEventListener("keypress", (event) => {
                     if (event.key === "Enter") {
-                        const command = content.value;
+                        const command = this.content.value;
                         if (command) {
-                            content.disabled = true;
+                            this.content.disabled = true;
                             this.parent.processCommand("input", command);
 
-                            content.remove();
+                            this.content.remove();
 
-                            content = document.createElement("p");
-                            content.id = "command-response";
-                            content.textContent = command;
+                            this.content = document.createElement("p");
+                            this.content.id = "command-response";
+                            this.content.textContent = command;
 
-                            this.line.appendChild(content);
+                            this.line.appendChild(this.content);
                         }
                     }
                 });
             
-                content.addEventListener("input", () => {
-                    content.value = content.value.toUpperCase();
+                this.content.addEventListener("input", () => {
+                    this.content.value = this.content.value.toUpperCase();
                 });
             
-                setTimeout(() => content.focus(), 10);
+                setTimeout(() => this.content.focus(), 10);
 
                 break;
             }
@@ -74,13 +74,13 @@ export default class CCommand {
                 const response = `${ this.data }`;
                 let buffer = "";
 
-                content = document.createElement("p");
-                content.id = "command-response";
+                this.content = document.createElement("p");
+                this.content.id = "command-response";
             
                 let index = 0;
                 const typingEffect = setInterval(() => {
                     buffer += response[index];
-                    content.innerHTML = buffer;
+                    this.content.innerHTML = buffer;
                     index++;
             
                     if (index >= response.length) {
@@ -96,12 +96,12 @@ export default class CCommand {
 
                 const output = `INVALID COMMAND '${ this.data }'`;
 
-                content = document.createElement("p");
-                content.id = "command-response";
+                this.content = document.createElement("p");
+                this.content.id = "command-response";
             
                 let index = 0;
                 const typingEffect = setInterval(() => {
-                    content.textContent += output[index];
+                    this.content.textContent += output[index];
                     index++;
             
                     if (index >= output.length) {
@@ -121,12 +121,12 @@ export default class CCommand {
 
                 const output = `SEARCHING '${ this.data }'....`;
 
-                content = document.createElement("p");
-                content.id = "command-response";
+                this.content = document.createElement("p");
+                this.content.id = "command-response";
             
                 let index = 0;
                 const typingEffect = setInterval(() => {
-                    content.textContent += output[index];
+                    this.content.textContent += output[index];
                     index++;
             
                     if (index >= output.length) {
@@ -142,12 +142,12 @@ export default class CCommand {
 
                 const output = `${ this.data[1] }`;
 
-                content = document.createElement("p");
-                content.id = "command-response";
+                this.content = document.createElement("p");
+                this.content.id = "command-response";
             
                 let index = 0;
                 const typingEffect = setInterval(() => {
-                    content.textContent += output[index];
+                    this.content.textContent += output[index];
                     index++;
             
                     if (index >= output.length) {
@@ -163,12 +163,12 @@ export default class CCommand {
 
                 const output = `Uhh!!!'`;
 
-                content = document.createElement("p");
-                content.id = "command-response";
+                this.content = document.createElement("p");
+                this.content.id = "command-response";
             
                 let index = 0;
                 const typingEffect = setInterval(() => {
-                    content.textContent += output[index];
+                    this.content.textContent += output[index];
                     index++;
             
                     if (index >= output.length) {
@@ -181,7 +181,7 @@ export default class CCommand {
             }
         }
 
-        this.line.appendChild(content);
+        this.line.appendChild(this.content);
         this.parent.appendChild(this.line);
     }
 }

@@ -19,10 +19,31 @@ export default class CTerminal extends HTMLElement {
         scrollbar-width: none`;
 
         this.commandDatabase = commandDatabase;
+        this.commandHistory = [];
+        this.currentUserInput = null;
 
         this.bot = new Bot();
 
-        new CCommand(this, "response", "WELCOME TO WARP SYSTEMS CONTROL")
+        new CCommand(this, "response", "WELCOME TO WARP SYSTEMS CONTROL");
+
+        this.historyIndex = 0;
+        this.historyUpdater = 0;
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "ArrowUp") {
+                if (this.historyUpdater < this.commandHistory.length) this.historyUpdater++;
+                this.historyIndex = this.commandHistory.length - this.historyUpdater;
+                if (this.commandHistory[this.historyIndex]) this.currentUserInput.content.value = this.commandHistory[this.historyIndex];
+            }
+            if (event.key === "ArrowDown") {
+                if (this.historyUpdater > 0) this.historyUpdater--;
+                this.historyIndex = this.commandHistory.length - this.historyUpdater;
+                if (this.commandHistory[this.historyIndex]) this.currentUserInput.content.value = this.commandHistory[this.historyIndex];
+            }
+        });
+    }
+
+    setBlankInput() {
+        this.currentUserInput = new CCommand(this, "input", "");
     }
     
     processCommand(type, command) {
@@ -30,6 +51,8 @@ export default class CTerminal extends HTMLElement {
 
         switch (type) {
             case "input":
+                this.commandHistory.push(command);
+                this.historyUpdater = 0;
                 this.checkInput(lCommand);
                 break;
             case "search":
@@ -40,7 +63,7 @@ export default class CTerminal extends HTMLElement {
                 break;
             default:
                 if (lCommand === "complete") {
-                    new CCommand(this, "input", "");
+                    this.setBlankInput();
                 }
                 else {
                     console.warn(`Unknown command type: ${type}`);
@@ -80,17 +103,17 @@ export default class CTerminal extends HTMLElement {
 
     clear() {
         this.innerHTML = '';
-        new CCommand(this, "input", "");
+        this.setBlankInput();
     }
 
     search(command) {
         window.open(`https://www.google.com/search?q=${encodeURIComponent(command)}`, "_blank");
-        new CCommand(this, "input", "");
+        this.setBlankInput();
     }
 
     open(data) {
         window.open(data, "_blank");
-        new CCommand(this, "input", "");
+        this.setBlankInput();
     }
 
     help() {
@@ -118,6 +141,8 @@ export default class CTerminal extends HTMLElement {
         a.click();
         document.body.removeChild(a);
 
-        new CCommand(this, "input", "");
+        this.setBlankInput();
     }
+
+    
 }

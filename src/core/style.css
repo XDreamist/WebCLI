@@ -23,15 +23,6 @@ body {
     background-color: rgba(255, 255, 255, 0.7);*/
 }
 
-/* #rectCursor {
-    position: absolute;
-    width: 10px;
-    height: 20px;
-    background-color: #326c20;
-    pointer-events: none;
-    z-index: 2;
-} */
-
 #scanLines {
     position: fixed;
     top: 0;
