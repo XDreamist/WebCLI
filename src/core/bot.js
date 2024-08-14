@@ -9,6 +9,10 @@ export default class Bot {
 
 		this.apiUrl = `https://chat.botpress.cloud/${webhookId}`;
 		this.messageCount = -1;
+
+		this.botId = "user_01J4RY1H7KP46FCPCBN2CC1QHR";
+		this.botMessages = [];
+
 		this.initConversation();
 	}
 
@@ -41,7 +45,7 @@ export default class Bot {
 					text: userMessage,
 				},
 			});
-			this.messageCount += 2;
+			this.messageCount++;
 			console.log('Message sent:', userMessage);
 
 			return await this.receiveLatestMessage();
@@ -64,14 +68,22 @@ export default class Bot {
 				});
 
 				const sortedMessages = messages.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
-				console.log('Sorted messages:', sortedMessages);
+				this.botMessages = [];
 
-				if (sortedMessages.length > this.messageCount) {
-					const botResponse = sortedMessages[sortedMessages.length - 1];
+				for (let msg in sortedMessages) {
+					if (sortedMessages[msg].userId === this.botId) {
+						this.botMessages.push(sortedMessages[msg]);
+					}
+				}
+
+				if (this.botMessages.length > this.messageCount) {
+					const botResponse = this.botMessages[this.botMessages.length - 1];
 
 					if (botResponse?.payload) {
+						console.log("Sorted messages:", sortedMessages);
+						console.log("Bot's messages:", this.botMessages);
 						console.log("Bot's response:", botResponse.payload);
-						if (botResponse.payload.text.startsWith("Hey! Let me find some information about")) return botResponse.payload.text;
+						if (! botResponse.payload.text.startsWith("Hey! Let me find some information about")) return botResponse.payload.text;
 					}
 					else {
 						console.warn('Bot response or payload is undefined');

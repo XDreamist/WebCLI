@@ -1,3 +1,5 @@
+import { marked } from "marked";
+
 export default class CCommand {
     constructor(parent, type, data) {
         this.parent = parent;
@@ -41,6 +43,7 @@ export default class CCommand {
                 this.content = document.createElement("input");
                 this.content.type = "text";
                 this.content.id = "terminal-input";
+                this.content.autocomplete = "off";
             
                 this.content.addEventListener("keypress", (event) => {
                     if (event.key === "Enter") {
@@ -53,7 +56,7 @@ export default class CCommand {
 
                             this.content = document.createElement("p");
                             this.content.id = "command-response";
-                            this.content.textContent = command;
+                            this.content.innerHTML = marked(command);
 
                             this.line.appendChild(this.content);
                         }
@@ -78,8 +81,9 @@ export default class CCommand {
                 this.content.id = "command-response";
             
                 let index = 0;
+                const markdownResponse = marked(response);
                 const typingEffect = setInterval(() => {
-                    buffer += response[index];
+                    buffer += markdownResponse[index];
                     this.content.innerHTML = buffer;
                     index++;
             

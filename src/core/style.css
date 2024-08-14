@@ -77,6 +77,11 @@ body {
     justify-content: space-between;
 }
 
+a {
+    color: #326c20;
+    text-decoration: none;
+}
+
 h1 {
     font-size: 50px;
     font-weight: 100;
@@ -147,7 +152,8 @@ h2 {
     width: 70%;
     position: absolute;
     background-repeat: no-repeat;
-    background-size: 100% auto;
+    background-size: cover;
+    background-position: center;
     pointer-events: none;
     z-index: 1;
 }

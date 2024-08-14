@@ -10,10 +10,11 @@
   "author": "XDreamist",
   "license": "MIT",
   "dependencies": {
-    "@botpress/chat": "^0.4.0"
+    "@botpress/chat": "^0.4.0",
+    "marked": "^14.0.0"
   },
   "devDependencies": {
-    "vite": "^5.4.0",
-    "axios": ">=1.7.4"
+    "axios": ">=1.7.4",
+    "vite": "^5.4.0"
   }
 }
