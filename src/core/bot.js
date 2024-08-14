@@ -71,14 +71,15 @@ export default class Bot {
 
 					if (botResponse?.payload) {
 						console.log("Bot's response:", botResponse.payload);
-						return botResponse.payload.text;
+						if (botResponse.payload.text.startsWith("Hey! Let me find some information about")) return botResponse.payload.text;
 					}
-
-					console.warn('Bot response or payload is undefined');
-					return null;
+					else {
+						console.warn('Bot response or payload is undefined');
+						return null;
+					}
 				}
 
-				await new Promise((resolve) => setTimeout(resolve, pollInterval)); // Wait before polling again
+				await new Promise((resolve) => setTimeout(resolve, pollInterval));
 			}
 
 			console.warn('Timed out waiting for new message');
