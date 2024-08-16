@@ -90,8 +90,8 @@ export default class CTerminal extends HTMLElement {
             if (command in this.commandDatabase) {
                 new CCommand(this, "open", this.commandDatabase[command]);
             } else {
-                const response = await this.bot.sendMessage(command);
-                if (response !== null) {
+                const  = await this.bot.sendMessage(command);
+                if ( !== null) {
                     new CCommand(this, "response", response.toUpperCase());
                 }
                 else {
@@ -118,14 +118,14 @@ export default class CTerminal extends HTMLElement {
 
     help() {
         const helpText = `
-        AVAILABLE COMMANDS:<br>
-        • SEARCH &lt;QUERY&gt;<br>
-        • SHOW CV<br>
-        • DOWNLOAD CV<br>
-        • SHOW REPO<br>
-        • CLEAR<br>
-        • HELP<br>
-        <br>
+        AVAILABLE COMMANDS:<\n>
+        • SEARCH &lt;QUERY&gt;<\n>
+        • SHOW CV<\n>
+        • DOWNLOAD CV<\n>
+        • SHOW REPO<\n>
+        • CLEAR<\n>
+        • HELP<\n>
+        <\n>
         FOR MORE INFORMATION, CONSULT THE RELEVANT DOCUMENTATION.
         `;
         
