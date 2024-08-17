@@ -24,7 +24,7 @@ export default class CTerminal extends HTMLElement {
 
         this.bot = new Bot();
 
-        new CCommand(this, "response", "WELCOME TO WARP SYSTEMS CONTROL");
+        new CCommand(this, "response", "WELCOME! TYPE 'HELP' FOR COMMANDS");
 
         this.historyIndex = 0;
         this.historyUpdater = 0;
@@ -90,9 +90,9 @@ export default class CTerminal extends HTMLElement {
             if (command in this.commandDatabase) {
                 new CCommand(this, "open", this.commandDatabase[command]);
             } else {
-                const  = await this.bot.sendMessage(command);
-                if ( !== null) {
-                    new CCommand(this, "response", response.toUpperCase());
+                const response = await this.bot.sendMessage(command);
+                if (response !== null) {
+                    new CCommand(this, "bot-response", response.toUpperCase());
                 }
                 else {
                     new CCommand(this, "response", "UHH!! I'M TRYING TO PROCESS THAT.");
@@ -118,14 +118,15 @@ export default class CTerminal extends HTMLElement {
 
     help() {
         const helpText = `
-        AVAILABLE COMMANDS:<\n>
-        • SEARCH &lt;QUERY&gt;<\n>
-        • SHOW CV<\n>
-        • DOWNLOAD CV<\n>
-        • SHOW REPO<\n>
-        • CLEAR<\n>
-        • HELP<\n>
-        <\n>
+        AVAILABLE COMMANDS:<br>
+        • SEARCH &lt;QUERY&gt;<br>
+        • SHOW CV<br>
+        • DOWNLOAD CV<br>
+        • SHOW REPO<br>
+        • PLAY GAME<br>
+        • CLEAR<br>
+        • HELP<br>
+        <br>
         FOR MORE INFORMATION, CONSULT THE RELEVANT DOCUMENTATION.
         `;
         

@@ -71,7 +71,7 @@ export default class CCommand {
 
                 break;
             }
-            case "response": {
+            case "bot-response": {
                 this.setSymbol("< ");
 
                 const response = `${ this.data }`;
@@ -84,6 +84,29 @@ export default class CCommand {
                 const markdownResponse = marked(response);
                 const typingEffect = setInterval(() => {
                     buffer += markdownResponse[index];
+                    this.content.innerHTML = buffer;
+                    index++;
+            
+                    if (index >= markdownResponse.length) {
+                        clearInterval(typingEffect);
+                        this.parent.processCommand("response", "complete");
+                    }
+                }, 15);
+
+                break;
+            }
+            case "response": {
+                this.setSymbol("< ");
+
+                const response = `${ this.data }`;
+                let buffer = "";
+
+                this.content = document.createElement("p");
+                this.content.id = "command-response";
+            
+                let index = 0;
+                const typingEffect = setInterval(() => {
+                    buffer += response[index];
                     this.content.innerHTML = buffer;
                     index++;
             
