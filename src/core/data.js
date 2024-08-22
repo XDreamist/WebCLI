@@ -8,6 +8,7 @@ export const commandDatabase = {
     "wazir": [ "https://wazirx.com/funds", "OPENING 'WAZIR'...." ],
     "tradeview": [ "https://in.tradingview.com/", "OPENING 'TRADINGVIEW'...." ],
 
+    "show github": [ "https://github.com/XDreamist", "SHOWING GITHUB...." ],
     "show repo": [ "https://github.com/XDreamist/WebCLI", "OPENING REPO...." ],
     "show cv": [ `${getBaseUrl()}src/resume/resume.html`, "SHOWING CV...." ],
     "download cv": [ `${getBaseUrl()}public/resume/Umesh P.pdf`, "DOWNLOADING CV...." ],

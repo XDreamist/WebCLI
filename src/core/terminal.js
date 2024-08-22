@@ -122,7 +122,7 @@ export default class CTerminal extends HTMLElement {
         • SEARCH &lt;QUERY&gt;<br>
         • SHOW CV<br>
         • DOWNLOAD CV<br>
-        • SHOW REPO<br>
+        • SHOW GITHUB<br>
         • PLAY PGOU<br>
         • PLAY SANDSURFERS<br>
         • CLEAR<br>
