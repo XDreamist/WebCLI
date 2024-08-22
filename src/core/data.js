@@ -13,7 +13,8 @@ export const commandDatabase = {
     "download cv": [ `${getBaseUrl()}public/resume/Umesh P.pdf`, "DOWNLOADING CV...." ],
     "edit bot": [ "https://studio.botpress.cloud/64aa5b7b-ffcc-430f-90e5-ef6cf1f7b859/home", "SHOWING BOT...." ],
 
-    "play game": [ `${getBaseUrl()}src/games/Sand Surfers/index.html`, "LOADING SAND_SURFERS...." ]
+    "play pgou": [ "https://store.steampowered.com/app/2912420/Pals_Go_Only_Up/", "TAKING YOU TO STEAM...." ],
+    "play sandsurfers": [ `${getBaseUrl()}src/games/Sand Surfers/index.html`, "LOADING SAND_SURFERS...." ]
 };
 
 function getBaseUrl() {
