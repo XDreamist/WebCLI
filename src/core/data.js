@@ -15,6 +15,7 @@ export const commandDatabase = {
     "edit bot": [ "https://studio.botpress.cloud/64aa5b7b-ffcc-430f-90e5-ef6cf1f7b859/home", "SHOWING BOT...." ],
 
     "play pgou": [ "https://store.steampowered.com/app/2912420/Pals_Go_Only_Up/", "TAKING YOU TO STEAM...." ],
+    "play scoutrun": [ `${getBaseUrl()}src/games/Scout Run/index.html`, "LOADING SCOUT_RUN...." ],
     "play sandsurfers": [ `${getBaseUrl()}src/games/Sand Surfers/index.html`, "LOADING SAND_SURFERS...." ]
 };
 

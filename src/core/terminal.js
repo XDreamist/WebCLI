@@ -124,6 +124,7 @@ export default class CTerminal extends HTMLElement {
         • DOWNLOAD CV<br>
         • SHOW GITHUB<br>
         • PLAY PGOU<br>
+        • PLAY SCOUTRUN<br>
         • PLAY SANDSURFERS<br>
         • CLEAR<br>
         • HELP<br>
