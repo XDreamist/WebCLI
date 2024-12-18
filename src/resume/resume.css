@@ -47,15 +47,15 @@ h1 {
   position: relative;
   font-family: "Trenda-Bold";
   letter-spacing: 2pt;
-  font-size: 40px;
+  font-size: 35px;
 }
 
 h2 {
   position: relative;
   font-family: "Trenda-Bold";
   letter-spacing: 1pt;
-  font-size: 20px;
-  margin: 25px 0;
+  font-size: 18px;
+  margin: 20px 0;
 }
 
 h2::after {
@@ -165,7 +165,7 @@ h3 {
     margin-left: 40px;
   }
   .horizontal-line {
-    margin-top: 25px;
+    margin-top: 20px;
   }
 }
 
